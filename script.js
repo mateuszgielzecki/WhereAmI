@@ -30,15 +30,17 @@ const whereAmI = function (lat, lng) {
 const renderCountry = function (data) {
     countries.style.opacity = '1';
 
+    console.log(data);
+    console.log(data.languages[Object.keys(data.languages)[0]]);
 
     const html = ` <article class="country">
-        <img class="country__img" src="" />
+        <img class="country__img" src="${data.flags.png}" />
         <div class="country__data">
             <h3 class="country__name">${data.name.common}</h3>
             <h4 class="country__region">${data.region}</h4>
-            <p class="country__row"><span>👫</span>${data.population}</p>
-            <p class="country__row"><span>🗣️</span>${data.languages}</p>
-            <p class="country__row"><span>💰</span>CUR</p>
+            <p class="country__row"><span>👫</span>${(+data.population / 1000000).toFixed(1) + ' people'}</p>
+            <p class="country__row"><span>🗣️</span>${data.languages[Object.keys(data.languages)[0]]}</p>
+            <p class="country__row"><span>💰</span>${data.currencies[Object.keys(data.currencies)[0]].name}</p>
         </div>
     </article>`
 
@@ -47,6 +49,7 @@ const renderCountry = function (data) {
 }
 
 
-whereAmI(52.508, 13.381);
+whereAmI(50.012100, 20.985842);
 whereAmI(12.508, 42.381);
+whereAmI(39.508, 32.381);
 
